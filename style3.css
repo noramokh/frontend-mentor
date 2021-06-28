@@ -1,0 +1,129 @@
+/* Using CSS grid */
+/* Grid-template-area */
+/* had to use tewo empty divs prior to image element as empty spaces before elements arent feasible with grid'template*/
+
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Lexend+Deca&display=swap");
+
+* {
+	box-sizing: border-box;
+}
+
+/* Bigest overall page grid */
+
+body {
+	display: grid;
+	grid-template-columns: 0.25fr 1.5fr 0.25fr;
+	grid-template-areas:
+		". . ."
+		". container ."
+		". footer .";
+	height: 100vh;
+	justify-content: center;
+}
+
+.attribution {
+	grid-area: footer;
+}
+
+/* second grid -- that will hold the car cards */
+
+.container {
+	grid-area: container;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	grid-template-areas: "sed suv lux";
+	background-color: wheat;
+}
+.sedan {
+	grid-area: sed;
+	background-color: hsl(31, 77%, 52%);
+	border-radius: 5px 0 0 5px;
+}
+.suv {
+	grid-area: suv;
+	background-color: hsl(184, 100%, 22%);
+}
+.luxury {
+	grid-area: lux;
+	background-color: hsl(179, 100%, 13%);
+	border-radius: 0 5px 5px 0;
+}
+
+/* third grid that will sort the image,headers etc.. in the cards */
+
+.car {
+	display: grid;
+	grid-template-columns: 0.35fr 0.75fr 0.5fr 0.35fr;
+	grid-template-rows: 0.2fr 0.2fr 0.35fr 1fr 0.2fr 0.25fr;
+	grid-template-areas:
+		"z z z z"
+		"2 a . ."
+		". b . ."
+		". c c ."
+		". d . ."
+		". . . .";
+}
+.space {
+	grid-area: z;
+}
+.space2 {
+	grid-area: 2;
+}
+image {
+	grid-area: a;
+}
+
+h2 {
+	grid-area: b;
+	font-family: "Big Shoulders Display", cursive;
+	color: white;
+	text-transform: uppercase;
+}
+p {
+	grid-area: c;
+	font-family: "Lexend Deca";
+	color: hsla(0, 0%, 100%, 0.75);
+	font-size: 15px;
+	line-height: 1.5;
+}
+button {
+	grid-area: d;
+	background-color: white;
+	padding: 5px 10px;
+	border-radius: 25px;
+	border-color: transparent;
+	cursor: pointer;
+	text-decoration: none;
+}
+.sedan button {
+	color: hsl(31, 77%, 52%);
+}
+.suv button {
+	color: hsl(184, 100%, 22%);
+}
+.luxury button {
+	color: hsl(179, 100%, 13%);
+}
+
+button:hover {
+	background-color: transparent;
+	border-color: white;
+	border-style: ridge;
+	color: white;
+}
+
+@media only screen and (max-width: 796px) {
+	.container {
+		grid-area: container;
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		grid-template-areas: "sed suv" "lux lux";
+	}
+}
+
+@media only screen and (max-width: 375px) {
+	.container {
+		grid-template-columns: repeat(2, auto);
+		grid-template-areas: "sed" "suv" "lux";
+	}
+}
